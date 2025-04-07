@@ -2,7 +2,6 @@ from sqlalchemy import Column, Integer, String, Enum
 import enum
 from database import Base
 from database import engine
-Base.metadata.create_all(bind=engine)
 
 class User(Base):
     __tablename__ = "users"
@@ -13,3 +12,5 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     role = Column(String(50), nullable=False)
     college = Column(String, nullable=False)
+
+Base.metadata.create_all(bind=engine)

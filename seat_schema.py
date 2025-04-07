@@ -4,7 +4,6 @@ from database import Base
 from pydantic import BaseModel
 from user_models import User
 from database import engine
-Base.metadata.create_all(bind=engine)
 
 class Seat(Base):
     __tablename__ = "seats"
@@ -18,3 +17,5 @@ class Seat(Base):
 
 class OccupySeatRequest(BaseModel):
     qr_data: str  # e.g., "iist-57-5"
+
+Base.metadata.create_all(bind=engine)

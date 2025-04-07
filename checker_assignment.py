@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship
 from database import Base
 from user_models import User
 from database import engine
-Base.metadata.create_all(bind=engine)
 
 class CheckerAssignment(Base):
     __tablename__ = "checker_assignments"
@@ -17,3 +16,5 @@ class CheckerAssignment(Base):
     bus_no = Column(Integer, nullable=False)
 
     checker = relationship(User, backref="assigned_buses")
+
+Base.metadata.create_all(bind=engine)
