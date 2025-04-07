@@ -2,6 +2,8 @@ from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from database import Base
 from user_models import User
+from database import engine
+Base.metadata.create_all(bind=engine)
 
 class CheckerAssignment(Base):
     __tablename__ = "checker_assignments"

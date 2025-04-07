@@ -3,6 +3,8 @@ from sqlalchemy.orm import relationship
 from database import Base
 from pydantic import BaseModel
 from user_models import User
+from database import engine
+Base.metadata.create_all(bind=engine)
 
 class Seat(Base):
     __tablename__ = "seats"
