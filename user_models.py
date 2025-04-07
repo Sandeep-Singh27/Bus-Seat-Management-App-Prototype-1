@@ -1,7 +1,5 @@
-from sqlalchemy import Column, Integer, String, Enum
-import enum
-from database import Base
-from database import engine
+from sqlalchemy import Column, Integer, String,CheckConstraint
+from database import Base,engine
 
 class User(Base):
     __tablename__ = "users"
@@ -12,5 +10,11 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     role = Column(String(50), nullable=False)
     college = Column(String, nullable=False)
+
+    __table_args__ = (
+        CheckConstraint(
+            "role IN ('student', 'admin', 'checker')", name="check_user_role"
+        ),
+    )
 
 Base.metadata.create_all(bind=engine)
